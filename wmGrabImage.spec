@@ -48,4 +48,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wmGrabImage
 %attr(755,root,root) %{_bindir}/GrabImage
 %{_mandir}/man1/wmGrabImage.1*
-#%{_applnkdir}/DockApplets/wmGrabImage.desktop
+#%%{_applnkdir}/DockApplets/wmGrabImage.desktop
