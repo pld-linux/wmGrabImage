@@ -52,12 +52,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/GrabImage
 
 /etc/X11/applnk/DockApplets/wmGrabImage.desktop
-
-%changelog
-* Sat May 15 1999 Piotr Czerwiñski <pius@pld.org.pl>
-  [0.63-3]
-- spec file modified for PLD use,
-- package is FHS 2.0 compliant.
-
-* Tue Feb 9 1998 Ian Macdonald <ianmacd@xs4all.nl>
-- first RPM release.
