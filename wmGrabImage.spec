@@ -27,13 +27,13 @@ WWW, a potem je wy¶wietla.
 %build
 %{__make} -C %{name} clean
 %{__make} -C %{name} \
-        CFLAGS="%{rpmcflags} -Wall -I%{_includedir}" \
+	CFLAGS="%{rpmcflags} -Wall -I%{_includedir}" \
 	LIBDIR="-L/usr/X11R6/%{_lib}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
-        $RPM_BUILD_ROOT%{_desktopdir}/docklets
+	$RPM_BUILD_ROOT%{_desktopdir}/docklets
 
 install %{name}/wmGrabImage $RPM_BUILD_ROOT%{_bindir}
 install %{name}/GrabImage $RPM_BUILD_ROOT%{_bindir}
