@@ -35,12 +35,12 @@ make -C %{name} \
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
-        $RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
+        $RPM_BUILD_ROOT/usr/X11R6/share/applnk/DockApplets
 
 install -s %{name}/wmGrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/GrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
-install %{SOURCE1}		$RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
+install %{SOURCE1}		$RPM_BUILD_ROOT/usr/X11R6/share/applnk/DockApplets
 
 gzip -9nf BUGS CHANGES HINTS TODO \
 	$RPM_BUILD_ROOT%{_mandir}/man1/*
@@ -56,4 +56,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/GrabImage
 %{_mandir}/man1/wmGrabImage.1*
 
-/etc/X11/applnk/DockApplets/wmGrabImage.desktop
+/usr/X11R6/share/applnk/DockApplets/wmGrabImage.desktop
