@@ -1,43 +1,59 @@
-Summary: wmGrabImage grabs an image from the WWW and displays it
-%define version 0.63
-Name: wmGrabImage
-Version: %{version}
-Release: 1
-Copyright: GPL
-Group: X Windows/Window Managers
-Source: ftp://leadbelly.lanl.gov/pub/mgh/%{name}-%{version}.tar.gz
-Packager: Ian Macdonald <ianmacd@xs4all.nl>
-BuildRoot: /var/tmp/%{name}-root
-Requires: wget
+Summary:	wmGrabImage grabs an image from the WWW and displays it
+Summary(pl):	wmGrabImage wyci±ga obrazki ze stron WWW i wy¶wietla je
+Name: 		wmGrabImage
+Version:	0.63
+Release:	2
+Copyright:	GPL
+Group:		X11/Window Managers/Tools
+Group(pl):	X11/Zarz±dcy Okien/Narzêdzia
+Source0:	ftp://leadbelly.lanl.gov/pub/mgh/%{name}-%{version}.tar.gz
+Source1:	wmGrabImage.wmconfig
+Requires: 	wget
+BuildPrereq:    XFree86-devel
+BuildPrereq:    xpm-devel
+BuildRoot: 	/tmp/%{name}-%{version}-root
 
 %description
 wmGrabImage grabs an image from the WWW and displays it.
 
+%description -l pl
+wmGrabImage jest programem, który wyci±ga pliki graficzne ze stron
+WWW, a potem je wy¶wietla.
+
 %prep
-%setup
+%setup -q
 
 %build
-touch %{name}/%{name}.c
-make -C %{name}
+make -C wmGrabImage clean
+
+make -C wmGrabImage \
+        CFLAGS="$RPM_OPT_FLAGS -Wall"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/X11R6/{bin,man/man1}
-install -s -m 755 %{name}/%{name} $RPM_BUILD_ROOT/usr/X11R6/bin
-install -s -m 755 %{name}/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
-#install -m 444 %{name}/%{name}.1 $RPM_BUILD_ROOT/usr/X11R6/man/man1
+install -d $RPM_BUILD_ROOT/{usr/X11R6/bin,etc/X11/wmconfig}
+install -s wmGrabImage/wmGrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
+install wmGrabImage/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
 
-%files
-%defattr(-,root,root)
-/usr/X11R6/bin/%{name}
-/usr/X11R6/bin/GrabImage
-#/usr/X11R6/man/man1/%{name}.1
-%doc BUGS CHANGES COPYING HINTS INSTALL
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/wmGrabImage
+
+gzip -9nf BUGS CHANGES HINTS 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%changelog
-* Tue Feb 9 1998 Ian Macdonald <ianmacd@xs4all.nl>
+%files
+%defattr(644,root,root,755)
+%doc {BUGS,CHANGES,HINTS}.gz
 
+%attr(755,root,root) /usr/X11R6/bin/wmGrabImage
+%attr(755,root,root) /usr/X11R6/bin/GrabImage
+
+%changelog
+* Sat May 15 1999 Piotr Czerwiñski <pius@pld.org.pl>
+  [0.63-3]
+- spec file modified for PLD use,
+- package is FHS 2.0 compliant.
+
+* Tue Feb 9 1998 Ian Macdonald <ianmacd@xs4all.nl>
 - first RPM release
