@@ -2,7 +2,7 @@ Summary:	wmGrabImage grabs an image from the WWW and displays it
 Summary(pl):	wmGrabImage wyci±ga obrazki ze stron WWW i wy¶wietla je
 Name:		wmGrabImage
 Version:	0.72
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Window Managers/Tools
 Source0:	http://nis-www.lanl.gov/~mgh/WindowMaker/%{name}-%{version}.tgz
@@ -27,7 +27,8 @@ WWW, a potem je wy¶wietla.
 %build
 %{__make} -C %{name} clean
 %{__make} -C %{name} \
-        CFLAGS="%{rpmcflags} -Wall -I%{_includedir}"
+        CFLAGS="%{rpmcflags} -Wall -I%{_includedir}" \
+	LIBDIR="-L/usr/X11R6/%{_lib}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
