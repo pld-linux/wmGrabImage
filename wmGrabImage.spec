@@ -40,14 +40,13 @@ install %{name}/GrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
 #install %{SOURCE1}		$RPM_BUILD_ROOT%{_applnkdir}/DockApplets
 
-gzip -9nf BUGS CHANGES HINTS TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc BUGS CHANGES HINTS TODO
 %attr(755,root,root) %{_bindir}/wmGrabImage
 %attr(755,root,root) %{_bindir}/GrabImage
 %{_mandir}/man1/wmGrabImage.1*
