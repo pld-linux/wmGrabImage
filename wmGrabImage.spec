@@ -1,8 +1,8 @@
 Summary:	wmGrabImage grabs an image from the WWW and displays it
 Summary(pl):	wmGrabImage wyci±ga obrazki ze stron WWW i wy¶wietla je
 Name: 		wmGrabImage
-Version:	0.63
-Release:	3
+Version:	0.70
+Release:	1
 Copyright:	GPL
 Group:		X11/Window Managers/Tools
 Group(pl):	X11/Zarz±dcy Okien/Narzêdzia
@@ -14,6 +14,7 @@ BuildRequires:    xpm-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define _prefix		/usr/X11R6
+%define	_mandir		%{_prefix}/man
 
 %description
 wmGrabImage grabs an image from the WWW and displays it.
@@ -32,23 +33,27 @@ make -C %{name} \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir} \
+
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
         $RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
 
-install -s %{name}/wmGrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
-install %{name}/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
+install -s %{name}/wmGrabImage	$RPM_BUILD_ROOT%{_bindir}
+install %{name}/GrabImage	$RPM_BUILD_ROOT%{_bindir}
+install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
+install %{SOURCE1}		$RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
 
-gzip -9nf BUGS CHANGES HINTS 
+gzip -9nf BUGS CHANGES HINTS TODO \
+	$RPM_BUILD_ROOT%{_mandir}/man1/wmGrabImage.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {BUGS,CHANGES,HINTS}.gz
+%doc {BUGS,CHANGES,HINTS,TODO}.gz
 
 %attr(755,root,root) %{_bindir}/wmGrabImage
 %attr(755,root,root) %{_bindir}/GrabImage
+%{_mandir}/man1/wmGrabImage.1.gz
 
 /etc/X11/applnk/DockApplets/wmGrabImage.desktop
