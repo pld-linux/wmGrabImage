@@ -27,8 +27,8 @@ WWW, a potem je wy¶wietla.
 %setup -q
 
 %build
-make -C %{name} clean
-make -C %{name} \
+%{__make} -C %{name} clean
+%{__make} -C %{name} \
         CFLAGS="$RPM_OPT_FLAGS -Wall -I/usr/X11R6/include"
 
 %install
