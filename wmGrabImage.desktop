@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=wmGrabImage
+Name=WmGrabImage
 Comment=Image Grabber
 Comment[pl]=Wyłapywacz Obrazków
 Exec=wmGrabImage
