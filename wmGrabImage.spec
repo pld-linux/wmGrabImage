@@ -13,7 +13,7 @@ BuildPrereq:    XFree86-devel
 BuildPrereq:    xpm-devel
 BuildRoot: 	/tmp/%{name}-%{version}-root
 
-%define _prefix         /usr/X11R6
+%define _prefix	/usr/X11R6
 
 %description
 wmGrabImage grabs an image from the WWW and displays it.
@@ -27,7 +27,6 @@ WWW, a potem je wy¶wietla.
 
 %build
 make -C %{name} clean
-
 make -C %{name} \
         CFLAGS="$RPM_OPT_FLAGS -Wall"
 
@@ -38,7 +37,6 @@ install -d $RPM_BUILD_ROOT%{_bindir} \
 
 install -s %{name}/%{name} $RPM_BUILD_ROOT/usr/X11R6/bin
 install %{name}/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
-
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/%{name}
 
 gzip -9nf BUGS CHANGES HINTS 
@@ -60,4 +58,4 @@ rm -rf $RPM_BUILD_ROOT
 - package is FHS 2.0 compliant.
 
 * Tue Feb 9 1998 Ian Macdonald <ianmacd@xs4all.nl>
-- first RPM release
+- first RPM release.
