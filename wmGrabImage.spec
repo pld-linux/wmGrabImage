@@ -9,12 +9,12 @@ Group(pl):	X11/Zarz±dcy Okien/Narzêdzia
 Source0:	ftp://leadbelly.lanl.gov/pub/mgh/%{name}-%{version}.tar.gz
 Source1:	wmGrabImage.desktop
 Requires: 	wget
-BuildRequires:    XFree86-devel
-BuildRequires:    xpm-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	xpm-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define _prefix		/usr/X11R6
-%define	_mandir		%{_prefix}/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 wmGrabImage grabs an image from the WWW and displays it.
@@ -43,7 +43,7 @@ install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1}		$RPM_BUILD_ROOT/etc/X11/applnk/DockApplets
 
 gzip -9nf BUGS CHANGES HINTS TODO \
-	$RPM_BUILD_ROOT%{_mandir}/man1/wmGrabImage.1
+	$RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,6 +54,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/wmGrabImage
 %attr(755,root,root) %{_bindir}/GrabImage
-%{_mandir}/man1/wmGrabImage.1.gz
+%{_mandir}/man1/wmGrabImage.1*
 
 /etc/X11/applnk/DockApplets/wmGrabImage.desktop
