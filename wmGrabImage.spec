@@ -13,6 +13,8 @@ BuildPrereq:    XFree86-devel
 BuildPrereq:    xpm-devel
 BuildRoot: 	/tmp/%{name}-%{version}-root
 
+%define _prefix         /usr/X11R6
+
 %description
 wmGrabImage grabs an image from the WWW and displays it.
 
@@ -24,18 +26,20 @@ WWW, a potem je wy¶wietla.
 %setup -q
 
 %build
-make -C wmGrabImage clean
+make -C %{name} clean
 
-make -C wmGrabImage \
+make -C %{name} \
         CFLAGS="$RPM_OPT_FLAGS -Wall"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{usr/X11R6/bin,etc/X11/wmconfig}
-install -s wmGrabImage/wmGrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
-install wmGrabImage/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
+install -d $RPM_BUILD_ROOT%{_bindir} \
+        $RPM_BUILD_ROOT/etc/X11/wmconfig
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/wmGrabImage
+install -s %{name}/%{name} $RPM_BUILD_ROOT/usr/X11R6/bin
+install %{name}/GrabImage $RPM_BUILD_ROOT/usr/X11R6/bin
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/wmconfig/%{name}
 
 gzip -9nf BUGS CHANGES HINTS 
 
@@ -46,8 +50,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {BUGS,CHANGES,HINTS}.gz
 
-%attr(755,root,root) /usr/X11R6/bin/wmGrabImage
-%attr(755,root,root) /usr/X11R6/bin/GrabImage
+%attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/GrabImage
 
 %changelog
 * Sat May 15 1999 Piotr Czerwiñski <pius@pld.org.pl>
