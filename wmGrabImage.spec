@@ -1,14 +1,15 @@
 Summary:	wmGrabImage grabs an image from the WWW and displays it
 Summary(pl):	wmGrabImage wyci±ga obrazki ze stron WWW i wy¶wietla je
-Name: 		wmGrabImage
+Name:		wmGrabImage
 Version:	0.70
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		X11/Window Managers/Tools
+Group(de):	X11/Fenstermanager/Werkzeuge
 Group(pl):	X11/Zarz±dcy Okien/Narzêdzia
 Source0:	ftp://leadbelly.lanl.gov/pub/mgh/%{name}-%{version}.tar.gz
-Source1:	wmGrabImage.desktop
-Requires: 	wget
+Source1:	%{name}.desktop
+Requires:	wget
 BuildRequires:	XFree86-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,7 +29,7 @@ WWW, a potem je wy¶wietla.
 %build
 %{__make} -C %{name} clean
 %{__make} -C %{name} \
-        CFLAGS="$RPM_OPT_FLAGS -Wall -I/usr/X11R6/include"
+        CFLAGS="%{rpmcflags} -Wall -I%{_includedir}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -36,13 +37,12 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
         $RPM_BUILD_ROOT%{_applnkdir}/DockApplets
 
-install -s %{name}/wmGrabImage	$RPM_BUILD_ROOT%{_bindir}
+install %{name}/wmGrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/GrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1}		$RPM_BUILD_ROOT%{_applnkdir}/DockApplets
 
-gzip -9nf BUGS CHANGES HINTS TODO \
-	$RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf BUGS CHANGES HINTS TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
