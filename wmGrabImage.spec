@@ -15,6 +15,7 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_applnkdir	%{_datadir}/applnk
 
 %description
 wmGrabImage grabs an image from the WWW and displays it.
@@ -35,12 +36,12 @@ make -C %{name} \
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
-        $RPM_BUILD_ROOT/usr/X11R6/share/applnk/DockApplets
+        $RPM_BUILD_ROOT%{_applnkdir}/DockApplets
 
 install -s %{name}/wmGrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/GrabImage	$RPM_BUILD_ROOT%{_bindir}
 install %{name}/wmGrabImage.1	$RPM_BUILD_ROOT%{_mandir}/man1
-install %{SOURCE1}		$RPM_BUILD_ROOT/usr/X11R6/share/applnk/DockApplets
+install %{SOURCE1}		$RPM_BUILD_ROOT%{_applnkdir}/DockApplets
 
 gzip -9nf BUGS CHANGES HINTS TODO \
 	$RPM_BUILD_ROOT%{_mandir}/man1/*
@@ -56,4 +57,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/GrabImage
 %{_mandir}/man1/wmGrabImage.1*
 
-/usr/X11R6/share/applnk/DockApplets/wmGrabImage.desktop
+%{_applnkdir}/DockApplets/wmGrabImage.desktop
