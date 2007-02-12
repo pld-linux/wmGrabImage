@@ -1,5 +1,5 @@
 Summary:	wmGrabImage grabs an image from the WWW and displays it
-Summary(pl.UTF-8):   wmGrabImage wyciąga obrazki ze stron WWW i wyświetla je
+Summary(pl.UTF-8):	wmGrabImage wyciąga obrazki ze stron WWW i wyświetla je
 Name:		wmGrabImage
 Version:	0.72
 Release:	2
