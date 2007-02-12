@@ -1,5 +1,5 @@
 Summary:	wmGrabImage grabs an image from the WWW and displays it
-Summary(pl):	wmGrabImage wyci±ga obrazki ze stron WWW i wy¶wietla je
+Summary(pl.UTF-8):   wmGrabImage wyciÄ…ga obrazki ze stron WWW i wyÅ›wietla je
 Name:		wmGrabImage
 Version:	0.72
 Release:	2
@@ -17,9 +17,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 wmGrabImage grabs an image from the WWW and displays it.
 
-%description -l pl
-wmGrabImage jest programem, który wyci±ga pliki graficzne ze stron
-WWW, a potem je wy¶wietla.
+%description -l pl.UTF-8
+wmGrabImage jest programem, ktÃ³ry wyciÄ…ga pliki graficzne ze stron
+WWW, a potem je wyÅ›wietla.
 
 %prep
 %setup -q
